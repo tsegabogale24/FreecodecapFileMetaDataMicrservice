@@ -2,12 +2,11 @@ var express = require('express');
 var cors = require('cors');
 const multer = require('multer')
 require('dotenv').config()
-
+const upload = multer({ dest: 'uploads/' });
 var app = express();
 
 app.use(cors());
 app.use('/public', express.static(process.cwd() + '/public'));
-const upload = multer({ dest: 'uploads/' });
 
 app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
   res.json({
